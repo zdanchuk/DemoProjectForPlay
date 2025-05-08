@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.example.playdemo: DEBUG
+
+sms-service:
+  threat-types:
+    - "SOCIAL_ENGINEERING"
+    - "MALWARE"
+    - "UNWANTED_SOFTWARE"
+  confidence-level:
+    - "SAFE"
+    - "LOW"
+    - "MEDIUM"
+  external-sms-url: "https://external-sms-service.com/api/send"
+  web-risk-api-url: "https://cloud.google.com/web-risk/docs/reference/rest/v1eap1/TopLevel/evaluateUri"
+  reserved-numbers:
+    - "730300400"
+    - "813813813"
+
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/smsdb
+    username: smsuser
+    password: smspassword
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  sql:
+    init:
+      mode: always
+  messages:
+    basename: messages
+    encoding: UTF-8
+  config:
+    import: optional:file:./config/external-config.yml

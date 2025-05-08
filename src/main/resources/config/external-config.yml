@@ -1,0 +1,5 @@
+sms-service:
+  external-sms-url: "https://external-sms-service.com/api/send"
+  web-risk-api-url: "https://cloud.google.com/web-risk/docs/reference/rest/v1eap1/TopLevel/evaluateUri"
+  reserved-numbers:
+    - "730300400"
