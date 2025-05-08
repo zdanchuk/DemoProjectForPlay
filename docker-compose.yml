@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:15
+    container_name: sms-db
+    restart: always
+    environment:
+      POSTGRES_USER: smsuser       # Nazwa użytkownika bazy danych
+      POSTGRES_PASSWORD: smspassword # Hasło do bazy danych
+      POSTGRES_DB: smsdb            # Nazwa bazy danych
+    ports:
+      - "5432:5432"                 # Udostępnienie portu PostgreSQL
+    volumes:
+      - pg_data:/var/lib/postgresql/data  # Przechowywanie danych bazy w wolumenie Docker
+
+  sms-service:
+    build: .                        # Budowanie obrazu aplikacji na podstawie `Dockerfile`
+    container_name: sms-service      # Nazwa kontenera aplikacji
+    depends_on:
+      - db                           # Zapewnienie, że usługa `db` uruchomi się przed `sms-service`
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/smsdb  # Adres bazy danych PostgreSQL
+      SPRING_DATASOURCE_USERNAME: smsuser                      # Nazwa użytkownika dla aplikacji
+      SPRING_DATASOURCE_PASSWORD: smspassword                  # Hasło do bazy danych
+    ports:
+      - "8082:8080"                 # Udostępnienie aplikacji na porcie 8082
+    volumes:
+      - m2_repository:/.m2
+
+volumes:
+  pg_data:                           # Definicja wolumenu do przechowywania danych PostgreSQL
+  m2_repository:

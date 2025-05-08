@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "sms-service.reserved-numbers",
+      "type": "java.lang.String",
+      "description": "Numery serwisowe."
+    },
+    {
+      "name": "sms-service.web-risk-api-url",
+      "type": "java.lang.String",
+      "description": "Link do usługi sprawdzania phishingu."
+    },
+    {
+      "name": "sms-service.external-sms-url",
+      "type": "java.lang.String",
+      "description": "Zewnętrzna usługa wysyłania SMS-ów."
+    },
+    {
+      "name": "sms-service.threat-types",
+      "type": "java.lang.String",
+      "description": "Typy zagrożeń, które należy ocenić."
+    },
+    {
+      "name": "sms-service.confidence-level",
+      "type": "java.lang.String",
+      "description": "Bezpieczne poziomy zagrożenia."
+    }
+  ] }
